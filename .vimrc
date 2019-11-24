@@ -76,8 +76,10 @@ Plugin 'majutsushi/tagbar'       "A class outline viewer for Vim (IMHO better on
 
 
 "--- LaTeX stuff ---
-"Plugin 'lervag/vimtex'           Latex plugin for Vim
-"Plugin 'xuhdev/vim-latex-live-preview'
+"Plugin 'lervag/vimtex'             "Latex plugin for Vim, I don't know what it
+                                    "  exactly does...
+Plugin 'xuhdev/vim-latex-live-preview'  "This works fine without any adtional 
+                                        " Latex plugins
 
 
 " All of your Plugins must be added before the following line
@@ -165,7 +167,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 "--------------------------------------------------------------------
-" IndentLine configuration:
+" IndentLine Settings:
 
 let g:indentLine_enabled = 0 
 
@@ -176,11 +178,29 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 
 "--------------------------------------------------------------------
-" TagBar configuration:
+" TagBar Settings:
 " What's the right statement to automatically open up TagBar each time?
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_show_linenumbers = 2
 
 "--------------------------------------------------------------------
 
-noremap <leader>p :cd ~/Temp/cyclicshift/Game/Linux/<CR> :!rm CyclicShift<CR> :cd ../../Temp/Linux<CR> :!cmake<CR><CR> :!make<CR><CR> :!cp compile_commands.json ../../<CR> :cd ../../Game/Linux<CR> :!./CyclicShift & disown<CR><CR> <BAR> copen<CR>
+
+"--------------------------------------------------------------------
+" VimTex Settings:
+"let g:tex_flavor = 'latex'
+"let g:vimtex_latexmk_enabled = 0
+
+" Vim LaTex Live Preview Settings:
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'evince'
+"let g:livepreview_engine = 'your_engine' . ' [options]'
+"let g:livepreview_cursorhold_recompile = 0
+
+"--------------------------------------------------------------------
+
+
+noremap <F10> :cd ~/Temp/cyclicshift/Game/Linux/<CR> :!rm CyclicShift<CR> :cd ../../Temp/Linux<CR> :!cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" ../../Source/Projects/Linux<CR><CR> :!make<CR><CR> :!cp compile_commands.json ../../<CR> :cd ../../Game/Linux<CR> :!./CyclicShift <CR><CR> <BAR> copen<CR>
+
+
+noremap <leader>p :cd ~/Temp/cyclicshift/Game/Linux/<CR> :!rm CyclicShift<CR> :cd ../../Temp/Linux<CR> :!make<CR><CR> :!cp compile_commands.json ../../<CR> :cd ../../Game/Linux<CR> :!./CyclicShift <CR><CR>
